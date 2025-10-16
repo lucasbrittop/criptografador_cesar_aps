@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cifra de César Online</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Cifra de César</h1>
+        <form method="post">
+            <label for="texto">Texto:</label>
+            <textarea name="texto" rows="4" required>{{ texto_inserido }}</textarea>
+
+            <label for="chave">Chave (número):</label>
+            <input type="number" name="chave" value="{{ chave_inserida }}" min="1" required>
+
+            <label for="modo">O que você vai fazer?</label>
+            <select name="modo">
+                <option value="c">Criptografar</option>
+                <option value="d">Descriptografar</option>
+            </select>
+
+            <button type="submit">Processar</button>
+        </form>
+        
+        <h3>Resultado:</h3>
+        <div id="resultado">
+            <p>{{ resultado }}</p>
+        </div>
+    </div>
+</body>
+</html>
