@@ -18,12 +18,28 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit"><a href="index.html">Entrar</a></button> 
+     
         </form>
     </div>
 
     
-  
+   <script>
+       
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            // Previne o envio padrão do formulário
+            event.preventDefault();
+            
+           
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            
+            console.log("Email: " + email);
+            console.log("Senha: " + password);
+            
+        });
+    </script>
 
 
 
