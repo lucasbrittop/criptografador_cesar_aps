@@ -13,10 +13,9 @@ body {
     height: 100vh;
 }
 
-/* Remover sublinhado de links */
 a {
   text-decoration: none;
-  color: inherit; /* Isso mantém a cor do texto do link igual ao do texto normal */
+  color: inherit;
 }
 
 
