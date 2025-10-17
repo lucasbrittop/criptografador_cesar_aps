@@ -1,14 +1,16 @@
-# app.py
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
+import os
 
 # Inicializa o aplicativo Flask
 app = Flask(__name__)
 
 
-# Função para criptografar ou descriptografar usando a cifra de César
+app.secret_key = os.urandom(24)
+
+
+
 def cifra_de_cesar(texto, chave, modo):
-    
     alfabeto = 'abcdefghijklmnopqrstuvwxyz'
     resultado = ''
 
@@ -24,29 +26,51 @@ def cifra_de_cesar(texto, chave, modo):
             resultado += char
     return resultado
 
-# Define a rota principal da aplicação
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    
+    if 'email_usuario' not in session:
+        return redirect(url_for('login'))
+
+    
     resultado_final = ''
     texto_original = ''
     chave = 0
 
-    # Se o formulário for enviado (método POST)
     if request.method == 'POST':
         texto_original = request.form['texto']
         chave = int(request.form['chave'])
         modo = request.form['modo'] # 'c' ou 'd'
-        
         resultado_final = cifra_de_cesar(texto_original, chave, modo)
 
-    # Renderiza a página HTML passando o resultado
+    
     return render_template('index.html', resultado=resultado_final, texto_inserido=texto_original, chave_inserida=chave)
 
-@app.route('/login')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    
+    if request.method == 'POST':
+        
+        email = request.form['email']
+        
+        
+        session['email_usuario'] = email
+        
+        
+        return redirect(url_for('index'))
+
+    
     return render_template("login.html")
 
 
-# Executa o aplicativo
+@app.route('/logout')
+def logout():
+    
+    session.pop('email_usuario', None)
+
 if __name__ == '__main__':
+
     app.run(debug=True)
+    
