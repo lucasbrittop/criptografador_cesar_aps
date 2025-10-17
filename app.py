@@ -42,6 +42,11 @@ def index():
     # Renderiza a página HTML passando o resultado
     return render_template('index.html', resultado=resultado_final, texto_inserido=texto_original, chave_inserida=chave)
 
+@app.route('/login')
+def login():
+    return render_template("login.html")
+
+
 # Executa o aplicativo
 if __name__ == '__main__':
     app.run(debug=True)
