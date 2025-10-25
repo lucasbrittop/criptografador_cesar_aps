@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 
-
+#codigo para criptografar e descriptografar
 def cifra_de_cesar(texto, chave, modo):
     alfabeto = 'abcdefghijklmnopqrstuvwxyz'
     resultado = ''
@@ -27,6 +27,7 @@ def cifra_de_cesar(texto, chave, modo):
     return resultado
 
 
+#rota para a pagina de criptografação
 @app.route('/', methods=['GET', 'POST'])
 def index():
     
@@ -48,6 +49,10 @@ def index():
     return render_template('index.html', resultado=resultado_final, texto_inserido=texto_original, chave_inserida=chave)
 
 
+    
+
+
+#rota para pagina de login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     
@@ -65,12 +70,13 @@ def login():
     return render_template("login.html")
 
 
-@app.route('/logout')
+#rota botão sair
+@app.route('/logout', methods=['POST'])
 def logout():
     
-    session.pop('email_usuario', None)
+    session.pop('email_usuario', default=None)
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
 
     app.run(debug=True)
-    

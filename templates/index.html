@@ -6,18 +6,11 @@
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
-    
-    <div class="user">
-        {% if session['email_usuario'] %}
-            <p>Logado como: <strong>{{ session['email_usuario'] }}</strong> 
-        {% endif %}
-    </div>
-
     <div class="container">
         <h1>🔐 Cifra de César</h1>
         <form method="post">
             <label for="texto">Texto:</label>
-            <textarea name="texto" rows="4" required>{{ texto_inserido }}</textarea>
+            <textarea class="textoCript" name="texto" rows="5" required>{{ texto_inserido }}</textarea>
 
             <label for="chave">Chave (número):</label>
             <input type="number" name="chave" value="{{ chave_inserida }}" min="1" required>
@@ -35,7 +28,16 @@
         <div id="resultado">
             <p>{{ resultado }}</p>
         </div>
-    </div>
 
+
+
+    <div class="user">
+        {% if session['email_usuario'] %}
+            <p>Logado como: <strong>{{ session['email_usuario'] }}</strong> 
+        {% endif %}
+        <form method="post" action="{{ url_for('logout') }}">
+            <button class="user__logout_button" type="submit">Sair</button> 
+        </form>
+    </div>
 </body>
 </html>
