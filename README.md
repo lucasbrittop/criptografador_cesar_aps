@@ -37,21 +37,6 @@ da chave apenas em caracteres do alfabeto (a-z), preservando espaços, números 
     * ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
     * ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-## 📂 Estrutura do Projeto
-
-```
-
-/
-├── app.py             \# Arquivo principal do Flask (lógica, rotas)
-├── static/
-│   ├── style.css      \# CSS da página principal
-│   └── styleLogin.css \# CSS da página de login
-└── templates/
-├── index.html     \# HTML da página de criptografia
-└── login.html     \# HTML da página de login
-
-````
-
 ## ⚙️ Como Executar
 
 Para rodar este projeto localmente, siga os passos:
